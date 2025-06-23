@@ -34,7 +34,7 @@ export default function Home() {
               variant="secondary"
               size="xl"
               icon={<Launch size={20} />}
-              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl border-0"
+              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border-white/20 hover:border-white/30"
             >
               Use This Template
             </Button>
