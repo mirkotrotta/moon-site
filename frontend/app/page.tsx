@@ -18,7 +18,7 @@ export default function Home() {
       {/* Hero Section - Template Showcase */}
       <section className="relative min-h-[100vh] sm:min-h-[80vh] md:min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
         <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-          <Badge variant="primary" animate className="mb-4 sm:mb-6">
+          <Badge variant="primary" animate className="mb-4 sm:mb-6 p-2">
             🚀 Open Source Template • Live Demo
           </Badge>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
@@ -34,7 +34,7 @@ export default function Home() {
               variant="secondary"
               size="lg"
               icon={<Launch size={18} />}
-              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl border-0 w-full sm:w-auto"
+              className="bg-blue-600 text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl border-0 w-full sm:w-auto"
             >
               Use This Template
             </Button>
@@ -87,7 +87,7 @@ export default function Home() {
           </div>
           <div className="md:col-span-8">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-900 dark:text-white">About Me</h2>
-            <div className="prose text-md dark:prose-invert">
+            <div className="prose text-lg dark:prose-invert">
               {/* CUSTOMIZE: Update the following paragraphs with your own bio */}
               <p className="mb-4">
               Hello! I'm a silent traveler beneath the pale glow of the moon, walking paths where few dare linger.  
@@ -106,7 +106,7 @@ export default function Home() {
             <div className="mt-6">
               <Button 
                 href="/about" 
-                variant="link"
+                variant="outline"
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 Learn more about me
