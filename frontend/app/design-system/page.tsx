@@ -3,10 +3,14 @@
 import Button from '@/components/ui/Button';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
 import Tag from '@/components/ui/Tag';
+import Badge from '@/components/ui/Badge';
+import GlassCard from '@/components/ui/GlassCard';
+import Logo from '@/components/ui/Logo';
 import Layout from '@/components/Layout';
 import Link from 'next/link';
-import { LogoGithub, Launch } from '@carbon/icons-react';
+import { LogoGithub, Launch, Settings, User, Email } from '@carbon/icons-react';
 import { useState } from 'react';
+import { designTokens } from '@/lib/designTokens';
 
 export default function DesignSystemPage() {
   const [removableTag, setRemovableTag] = useState(true);
@@ -86,6 +90,39 @@ export default function DesignSystemPage() {
           </div>
         </nav>
 
+        {/* Brand Identity Section */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Brand Identity</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <GlassCard className="text-center">
+              <h3 className="text-lg font-semibold mb-4">Small Logo</h3>
+              <Logo size="sm" />
+            </GlassCard>
+            <GlassCard className="text-center">
+              <h3 className="text-lg font-semibold mb-4">Medium Logo</h3>
+              <Logo size="md" />
+            </GlassCard>
+            <GlassCard className="text-center">
+              <h3 className="text-lg font-semibold mb-4">Large Logo</h3>
+              <Logo size="lg" />
+            </GlassCard>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <GlassCard className="text-center">
+              <h3 className="text-lg font-semibold mb-4">Icon Only</h3>
+              <Logo showText={false} />
+            </GlassCard>
+            <Card className="text-center">
+              <CardContent>
+                <h3 className="text-lg font-semibold mb-4">On Standard Background</h3>
+                <Logo />
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         {/* Components Section */}
         <section id="components" className="mb-16">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Components</h2>
@@ -101,14 +138,22 @@ export default function DesignSystemPage() {
                 <div className="flex flex-wrap gap-4 mb-6">
                   <Button variant="primary">Primary</Button>
                   <Button variant="secondary">Secondary</Button>
-                  <Button variant="tertiary">Tertiary</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="ghost">Ghost</Button>
                   <Button variant="link">Link Button</Button>
                 </div>
                 <h5 className="text-md font-medium text-gray-900 dark:text-white mb-4">Sizes</h5>
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4 mb-6">
                   <Button size="sm" variant="primary">Small</Button>
                   <Button size="md" variant="primary">Medium</Button>
                   <Button size="lg" variant="primary">Large</Button>
+                  <Button size="xl" variant="primary">Extra Large</Button>
+                </div>
+                <h5 className="text-md font-medium text-gray-900 dark:text-white mb-4">With Icons & Arrows</h5>
+                <div className="flex flex-wrap gap-4">
+                  <Button variant="primary" showArrow>With Arrow</Button>
+                  <Button variant="outline" icon={<Settings size={16} />}>With Icon</Button>
+                  <Button variant="secondary" icon={<Email size={16} />} showArrow>Icon + Arrow</Button>
                 </div>
               </CardContent>
             </Card>
@@ -211,6 +256,113 @@ export default function DesignSystemPage() {
                   <Tag variant="success" removable>Tech Stack</Tag>
                   <Tag variant="warning" removable>JavaScript</Tag>
                   <Tag variant="error" removable>React</Tag>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Badge Component */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Badge</h3>
+            <Card className="mb-6">
+              <CardHeader>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white">Variants</h4>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap items-center gap-4 mb-6">
+                  <Badge variant="primary">Primary</Badge>
+                  <Badge variant="secondary">Secondary</Badge>
+                  <Badge variant="success">Success</Badge>
+                  <Badge variant="neutral">Neutral</Badge>
+                </div>
+                <h5 className="text-md font-medium text-gray-900 dark:text-white mb-4">Status Indicators</h5>
+                <div className="flex flex-wrap items-center gap-4 mb-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">Online</span>
+                    <Badge variant="success" dot />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">Busy</span>
+                    <Badge variant="primary" dot />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">Away</span>
+                    <Badge variant="neutral" dot />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">Live</span>
+                    <Badge variant="secondary" dot animate />
+                  </div>
+                </div>
+                <h5 className="text-md font-medium text-gray-900 dark:text-white mb-4">Interactive Examples</h5>
+                <div className="flex flex-wrap items-center gap-4">
+                  <Badge variant="primary" animate>🚀 Live Demo</Badge>
+                  <Badge variant="success">✅ Production Ready</Badge>
+                  <Badge variant="secondary">🎨 Design System</Badge>
+                  <Badge variant="neutral">📦 Open Source</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Glass Card Component */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Glass Morphism Cards</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <GlassCard blur="sm">
+                <h4 className="font-semibold mb-2">Small Blur</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Perfect for subtle overlay effects and modern UI elements.
+                </p>
+              </GlassCard>
+              <GlassCard blur="md">
+                <h4 className="font-semibold mb-2">Medium Blur</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Great for hero sections and prominent content areas.
+                </p>
+              </GlassCard>
+              <GlassCard blur="lg">
+                <h4 className="font-semibold mb-2">Large Blur</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Ideal for modal overlays and focus-drawing elements.
+                </p>
+              </GlassCard>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <GlassCard padding="sm" rounded="xl">
+                <div className="flex items-center gap-3">
+                  <User size={20} />
+                  <div>
+                    <h4 className="font-semibold">Compact Card</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Small padding, extra rounded</p>
+                  </div>
+                </div>
+              </GlassCard>
+              <GlassCard padding="xl" rounded="sm">
+                <div className="text-center">
+                  <Settings size={24} className="mx-auto mb-2" />
+                  <h4 className="font-semibold">Spacious Card</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Extra padding, subtle rounding</p>
+                </div>
+              </GlassCard>
+            </div>
+            <Card>
+              <CardHeader>
+                <h4 className="text-lg font-medium text-gray-900 dark:text-white">Usage Examples</h4>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <GlassCard className="flex items-center gap-3">
+                    <Badge variant="secondary" dot animate />
+                    <div>
+                      <h5 className="font-semibold">Live Status</h5>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Real-time updates</p>
+                    </div>
+                  </GlassCard>
+                  <GlassCard className="text-center">
+                    <Logo size="sm" />
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Brand showcase</p>
+                  </GlassCard>
                 </div>
               </CardContent>
             </Card>

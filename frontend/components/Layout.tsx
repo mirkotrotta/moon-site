@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Sun, Moon, Menu, Close, LogoGithub } from "@carbon/icons-react";
 import SocialLinks from "@/components/SocialLinks";
 import GlobalContainer from "@/components/ui/GlobalContainer";
+import Logo from "@/components/ui/Logo";
 import { usePathname } from "next/navigation";
 
 interface LayoutProps {
@@ -23,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Projects', href: '/projects' },
     { name: 'Blog', href: '/blog' },
     { name: 'Design System', href: '/design-system', special: true },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: 'mailto:hello@mirkotrotta.com', isEmail: true },
   ];
 
   // Function to update header height CSS variable
@@ -73,16 +74,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex justify-between items-center h-16">
             {/* Logo Section */}
             <div className="flex items-center space-x-8">
-              <Link href="/" className="group">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm group-hover:shadow-lg transition-shadow">
-                    🌙
-                  </div>
-                  <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                    Moon Site
-                  </span>
-                </div>
-              </Link>
+              <Logo />
               
               {/* Desktop Navigation */}
               <nav className="hidden lg:flex space-x-1">
@@ -90,17 +82,24 @@ export default function Layout({ children }: LayoutProps) {
                   const isActive = pathname === item.href;
                   const isSpecial = item.special;
                   
+                  const Component = item.isEmail ? 'a' : Link;
+                  const linkProps = item.isEmail 
+                    ? { href: item.href }
+                    : { href: item.href };
+                  
                   return (
-                    <Link
+                    <Component
                       key={item.name}
-                      href={item.href}
+                      {...linkProps}
                       className={`
                         relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
                         ${isActive 
                           ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
                           : isSpecial 
                             ? 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                            : item.isEmail
+                              ? 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/20'
+                              : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                         }
                       `}
                     >
@@ -108,7 +107,10 @@ export default function Layout({ children }: LayoutProps) {
                       {isSpecial && (
                         <span className="absolute -top-1 -right-1 w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
                       )}
-                    </Link>
+                      {item.isEmail && (
+                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-500 rounded-full"></span>
+                      )}
+                    </Component>
                   );
                 })}
               </nav>
@@ -156,18 +158,24 @@ export default function Layout({ children }: LayoutProps) {
                   const isActive = pathname === item.href;
                   const isSpecial = item.special;
                   
+                  const MobileComponent = item.isEmail ? 'a' : Link;
+                  const mobileLinkProps = item.isEmail 
+                    ? { href: item.href }
+                    : { href: item.href, onClick: () => setMobileOpen(false) };
+                  
                   return (
-                    <Link
+                    <MobileComponent
                       key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
+                      {...mobileLinkProps}
                       className={`
                         flex items-center px-4 py-3 text-base font-medium rounded-lg transition-all duration-200
                         ${isActive 
                           ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
                           : isSpecial 
                             ? 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                            : item.isEmail
+                              ? 'text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/20'
+                              : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                         }
                       `}
                     >
@@ -175,7 +183,10 @@ export default function Layout({ children }: LayoutProps) {
                       {isSpecial && (
                         <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
                       )}
-                    </Link>
+                      {item.isEmail && (
+                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                      )}
+                    </MobileComponent>
                   );
                 })}
               </nav>

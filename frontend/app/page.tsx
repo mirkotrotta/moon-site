@@ -3,6 +3,9 @@ import Link from "next/link";
 import GlobalCTA from "@/components/ui/GlobalCTA";
 import SkillsServicesGrid from "@/components/ui/SkillsServicesGrid";
 import ProjectCard from "@/components/projects/ProjectCard";
+import Button from "@/components/ui/Button";
+import Badge from "@/components/ui/Badge";
+import GlassCard from "@/components/ui/GlassCard";
 import { skillsData, featuredProjects } from "@/lib/data";
 import Layout from "@/components/Layout";
 import ClientBlogSection from "./ClientBlogSection";
@@ -15,9 +18,9 @@ export default function Home() {
       {/* Hero Section - Template Showcase */}
       <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
         <div className="text-center max-w-4xl mx-auto px-4">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <Badge variant="primary" animate className="mb-6">
             🚀 Open Source Template • Live Demo
-          </div>
+          </Badge>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Moon Site Template
           </h1>
@@ -26,33 +29,40 @@ export default function Home() {
             Complete with blog, projects showcase, design system, and professional components.
           </p>
           <div className="flex flex-wrap gap-4 justify-center mb-8">
-            <a
+            <Button
               href="https://github.com/mirkotrotta/moon-site/generate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
+              variant="primary"
+              size="xl"
+              icon={<Launch size={20} />}
+              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl"
             >
-              <Launch size={20} />
               Use This Template
-            </a>
-            <a
+            </Button>
+            <Button
               href="https://github.com/mirkotrotta/moon-site"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border border-white/20 px-8 py-3 rounded-lg font-medium transition-colors"
+              variant="ghost"
+              size="xl"
+              icon={<LogoGithub size={20} />}
+              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border border-white/20"
             >
-              <LogoGithub size={20} />
               View on GitHub
-            </a>
-            <Link
+            </Button>
+            <Button
               href="/design-system"
-              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border border-white/20 px-8 py-3 rounded-lg font-medium transition-colors"
+              variant="secondary"
+              size="xl"
+              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border border-white/20"
             >
               🎨 Design System
-            </Link>
+            </Button>
           </div>
-          <div className="text-sm text-white/80">
-            ⭐ Star on GitHub • 🍴 Fork & Customize • 🚀 Deploy Instantly
+          <div className="flex justify-center gap-4 text-sm text-white/80">
+            <Badge variant="success" dot />
+            <span>Star on GitHub</span>
+            <Badge variant="secondary" dot />
+            <span>Fork & Customize</span>
+            <Badge variant="primary" dot />
+            <span>Deploy Instantly</span>
           </div>
         </div>
       </section>

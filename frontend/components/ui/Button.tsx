@@ -3,15 +3,17 @@
 import { ArrowRight } from '@carbon/icons-react';
 import Link from 'next/link';
 import { ComponentProps, ReactNode } from 'react';
-import clsx from 'clsx';
+import { getButtonClasses, cn } from '@/lib/designTokens';
 
 type ButtonProps = {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link' | 'tertiary'; // Keep tertiary for backward compatibility
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
   href?: string;
   onClick?: () => void;
+  showArrow?: boolean;
+  icon?: ReactNode;
 } & ComponentProps<'button'>;
 
 export default function Button({
@@ -21,36 +23,23 @@ export default function Button({
   className,
   href,
   onClick,
+  showArrow = false,
+  icon,
   ...props
 }: ButtonProps) {
-  const baseStyles =
-    'inline-flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
-
-  const sizeStyles = {
-    sm: 'text-sm px-4 py-2',
-    md: 'text-base px-5 py-2.5',
-    lg: 'text-base px-6 py-3',
-  };
-
-  const variantStyles = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-800 text-white hover:bg-gray-900',
-    tertiary:
-      'border border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-gray-900',
-    link: 'text-blue-600 hover:underline dark:text-blue-400',
-  };
-
-  const classes = clsx(
-    baseStyles,
-    sizeStyles[size],
-    variantStyles[variant],
+  // Map old tertiary to new outline for backward compatibility
+  const mappedVariant = variant === 'tertiary' ? 'outline' : variant;
+  
+  const classes = cn(
+    getButtonClasses(mappedVariant as 'primary' | 'secondary' | 'outline' | 'ghost' | 'link', size),
     className
   );
 
   const content = (
     <>
+      {icon && <span className="mr-2">{icon}</span>}
       {children}
-      <ArrowRight size={16} className="ml-2" />
+      {showArrow && <ArrowRight size={16} className="ml-2" />}
     </>
   );
 
