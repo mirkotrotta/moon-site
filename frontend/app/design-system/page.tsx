@@ -183,7 +183,7 @@ export default function DesignSystemPage() {
                   <p>This is an outlined card with transparent background and prominent border.</p>
                 </CardContent>
                 <CardFooter>
-                  <Button size="sm" variant="tertiary">Explore</Button>
+                  <Button size="sm" variant="outline">Explore</Button>
                 </CardFooter>
               </Card>
 

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
 import ProjectCard, { Project } from "@/components/projects/ProjectCard";
 import Badge from "@/components/ui/Badge";
-import GlassCard from "@/components/ui/GlassCard";
+import { Card, CardContent } from "@/components/ui/Card";
 import { fetchProjects } from "@/lib/api";
 
 export default function ProjectsPage() {
@@ -38,12 +38,13 @@ export default function ProjectsPage() {
   return (
     <Layout>
       <div className="text-center mb-12">
+        <Badge variant="primary" className="mb-4">Portfolio</Badge>
         <h1 className="text-4xl font-bold mb-4">Projects</h1>
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-6">
           A showcase of professional projects demonstrating modern web development, 
           innovative solutions, and technical expertise.
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-4 items-center">
           <Badge variant="primary">
             {projects.length} Projects
           </Badge>
@@ -53,15 +54,22 @@ export default function ProjectsPage() {
       </div>
 
       {loading && (
-        <GlassCard className="text-center">
-          <Badge variant="primary" animate>Loading projects...</Badge>
-        </GlassCard>
+        <Card variant="default" className="text-center p-8">
+          <CardContent>
+            <Badge variant="primary" animate>Loading projects...</Badge>
+          </CardContent>
+        </Card>
       )}
       
       {error && (
-        <GlassCard className="text-center border-red-200 dark:border-red-800">
-          <p className="text-red-600 dark:text-red-400">{error}</p>
-        </GlassCard>
+        <Card variant="elevated" className="text-center p-8 border-red-200 dark:border-red-800">
+          <CardContent>
+            <Badge variant="secondary" className="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200">
+              Error
+            </Badge>
+            <p className="text-red-600 dark:text-red-400 mt-4">{error}</p>
+          </CardContent>
+        </Card>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

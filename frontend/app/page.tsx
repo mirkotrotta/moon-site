@@ -31,27 +31,27 @@ export default function Home() {
           <div className="flex flex-wrap gap-4 justify-center mb-8">
             <Button
               href="https://github.com/mirkotrotta/moon-site/generate"
-              variant="primary"
+              variant="secondary"
               size="xl"
               icon={<Launch size={20} />}
-              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl"
+              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl border-0"
             >
               Use This Template
             </Button>
             <Button
               href="https://github.com/mirkotrotta/moon-site"
-              variant="ghost"
+              variant="outline"
               size="xl"
               icon={<LogoGithub size={20} />}
-              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border border-white/20"
+              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border-white/20 hover:border-white/30"
             >
               View on GitHub
             </Button>
             <Button
               href="/design-system"
-              variant="secondary"
+              variant="outline"
               size="xl"
-              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border border-white/20"
+              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border-white/20 hover:border-white/30"
             >
               🎨 Design System
             </Button>
@@ -96,15 +96,16 @@ export default function Home() {
               </p>
             </div>
             <div className="mt-6">
-              <Link 
+              <Button 
                 href="/about" 
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                variant="link"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 Learn more about me
                 <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
                 </svg>
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
