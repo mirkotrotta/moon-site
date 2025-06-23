@@ -16,53 +16,59 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section - Template Showcase */}
-      <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
-        <div className="text-center max-w-4xl mx-auto px-4">
-          <Badge variant="primary" animate className="mb-6">
+      <section className="relative min-h-[100vh] sm:min-h-[80vh] md:min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <Badge variant="primary" animate className="mb-4 sm:mb-6">
             🚀 Open Source Template • Live Demo
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Moon Site Template
           </h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-2 sm:px-0">
             A modern, production-ready Next.js portfolio template with FastAPI backend. 
             Complete with blog, projects showcase, design system, and professional components.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 px-2 sm:px-0">
             <Button
               href="https://github.com/mirkotrotta/moon-site/generate"
               variant="secondary"
-              size="xl"
-              icon={<Launch size={20} />}
-              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border-white/20 hover:border-white/30"
+              size="lg"
+              icon={<Launch size={18} />}
+              className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl border-0 w-full sm:w-auto"
             >
               Use This Template
             </Button>
             <Button
               href="https://github.com/mirkotrotta/moon-site"
               variant="outline"
-              size="xl"
-              icon={<LogoGithub size={20} />}
-              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border-white/20 hover:border-white/30"
+              size="lg"
+              icon={<LogoGithub size={18} />}
+              className="bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border-white/20 hover:border-white/30 w-full sm:w-auto"
             >
               View on GitHub
             </Button>
             <Button
               href="/design-system"
               variant="outline"
-              size="xl"
-              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border-white/20 hover:border-white/30"
+              size="lg"
+              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border-white/20 hover:border-white/30 w-full sm:w-auto"
             >
               🎨 Design System
             </Button>
           </div>
-          <div className="flex justify-center gap-4 text-sm text-white/80">
-            <Badge variant="success" dot />
-            <span>Star on GitHub</span>
-            <Badge variant="secondary" dot />
-            <span>Fork & Customize</span>
-            <Badge variant="primary" dot />
-            <span>Deploy Instantly</span>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm text-white/80 px-2 sm:px-0">
+            <div className="flex items-center gap-2">
+              <Badge variant="success" dot />
+              <span>Star on GitHub</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="secondary" dot />
+              <span>Fork & Customize</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Badge variant="primary" dot />
+              <span>Deploy Instantly</span>
+            </div>
           </div>
         </div>
       </section>
@@ -81,18 +87,20 @@ export default function Home() {
           </div>
           <div className="md:col-span-8">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-900 dark:text-white">About Me</h2>
-            <div className="prose dark:prose-invert">
+            <div className="prose text-md dark:prose-invert">
               {/* CUSTOMIZE: Update the following paragraphs with your own bio */}
               <p className="mb-4">
-                Hello! I'm a passionate full-stack developer with over 5 years of experience building modern web applications. 
-                I specialize in TypeScript, React, Next.js, Node.js, and Python, with a strong focus on creating clean, maintainable, and scalable code.
+              Hello! I'm a silent traveler beneath the pale glow of the moon, walking paths where few dare linger.  
+              In the stillness of the night, I find clarity — a lone wolf drawn not by the noise of the pack, but the quiet hum of instinct.
               </p>
               <p className="mb-4">
-                My background includes working with startups and enterprise companies, where I've led the development of various web applications, 
-                RESTful APIs, and cloud infrastructure. I'm particularly interested in performance optimization, user experience, and the integration of AI solutions.
+                My journey is not defined by crowds, but by shadows and stars. I move with purpose through forgotten forests of thought,  
+                where every silence speaks, and each step echoes with the weight of unseen battles.  
+                I build not to impress, but to endure — structure, solitude, and strength in every line.
               </p>
               <p>
-                When I'm not coding, you can find me contributing to open source projects, writing technical blog posts, or exploring the latest developments in web technology.
+                When the world sleeps, I sharpen my craft. The moon is my mentor, the dark my discipline.  
+                I do not howl for attention — I hunt for meaning, and I leave no trace but precision.
               </p>
             </div>
             <div className="mt-6">
