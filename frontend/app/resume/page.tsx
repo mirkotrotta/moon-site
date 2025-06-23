@@ -1,47 +1,17 @@
 // Tailwind Design System inspired by IBM Carbon
-"use client";
-
-import { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
+import { fetchResume, ResumeEntry } from "@/lib/api";
 
-interface ResumeEntry {
-  id: number;
-  title: string;
-  company: string;
-  start_date: string;
-  end_date: string | null;
-  description?: string;
-  location?: string;
-  role_type?: string;
-}
+export default async function ResumePage() {
+  let resume: ResumeEntry[] = [];
+  let error: string | null = null;
 
-export default function ResumePage() {
-  const [resume, setResume] = useState<ResumeEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    const isDark = stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDarkMode(isDark);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/resume/")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch resume");
-        return res.json();
-      })
-      .then((data: ResumeEntry[]) => setResume(data))
-      .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
+  try {
+    resume = await fetchResume();
+  } catch (err) {
+    console.error("Error fetching resume:", err);
+    error = "Failed to load resume. Please try again later.";
+  }
 
   return (
     <Layout>
@@ -49,7 +19,6 @@ export default function ResumePage() {
         My Resume
       </h1>
 
-      {loading && <p className="text-sm text-gray-500">Loading...</p>}
       {error && <p className="text-sm text-red-600">{error}</p>}
 
       <div className="space-y-8">

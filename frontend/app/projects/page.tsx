@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Layout from "@/components/Layout";
 import ProjectCard, { Project } from "@/components/projects/ProjectCard";
+import { fetchProjects } from "@/lib/api";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -12,18 +13,17 @@ export default function ProjectsPage() {
 
   useEffect(() => {
     setDarkMode(localStorage.theme === "dark");
-    fetch("http://localhost:8000/api/github/")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch projects");
-        return res.json();
-      })
-      .then((data: Project[]) => {
-        const filtered = data
-          .filter((p) => p.description && p.language) // only described + language
+    
+    fetchProjects()
+      .then((data) => {
+        const sorted = data
           .sort((a, b) => new Date(b.updated).getTime() - new Date(a.updated).getTime());
-        setProjects(filtered);
+        setProjects(sorted);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => {
+        console.error("Error fetching projects:", err);
+        setError("Failed to load projects. Please try again later.");
+      })
       .finally(() => setLoading(false));
   }, []);
 

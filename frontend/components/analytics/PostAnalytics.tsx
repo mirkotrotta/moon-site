@@ -17,7 +17,10 @@ export default function PostAnalytics({ slug, title }: PostAnalyticsProps) {
   
   useEffect(() => {
     // Simple view tracking - can be expanded with real analytics service
+    // Track post view analytics
+  if (process.env.NODE_ENV === 'development') {
     console.log(`Post viewed: ${title} (${slug})`);
+  }
     
     // Example of how you might track with a service like Google Analytics
     try {

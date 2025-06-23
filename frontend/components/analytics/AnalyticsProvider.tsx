@@ -18,10 +18,10 @@ type AnalyticsProviderProps = {
  * To use this component, wrap your _app.tsx or RootLayout component:
  * ```tsx
  * <AnalyticsProvider 
- *   googleAnalyticsId="G-XXXXXXXXXX"
- *   fathomSiteId="XXXXXXXXXX"
+ *   googleAnalyticsId="G-YOUR_GA_ID"
+ *   fathomSiteId="YOUR_FATHOM_ID"
  *   plausibleDomain="yourdomain.com"
- *   umamiWebsiteId="XXXXXXXXXX"
+ *   umamiWebsiteId="YOUR_UMAMI_ID"
  * >
  *   {children}
  * </AnalyticsProvider>

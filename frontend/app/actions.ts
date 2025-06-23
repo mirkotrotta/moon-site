@@ -29,9 +29,9 @@ function getSlugFromFilename(filename: string): string {
 }
 
 /**
- * Server action to get all blog posts
+ * Function to get all blog posts (converted from server action)
  */
-export async function fetchAllPosts(): Promise<PostData[]> {
+export function fetchAllPosts(): PostData[] {
   // Ensure the blog directory exists
   if (!fs.existsSync(BLOG_DIR)) {
     console.warn(`Blog directory not found: ${BLOG_DIR}`);

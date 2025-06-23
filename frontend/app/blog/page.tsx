@@ -34,17 +34,18 @@ export const metadata: Metadata = {
   },
 };
 
-// Updated type definition to match Next.js current expected format
+// Updated type definition to match Next.js 15 expected format
 type BlogPageProps = {
-  searchParams: { tag?: string }
+  searchParams: Promise<{ tag?: string }>
 }
 
 export default async function BlogIndexPage(
   { searchParams }: BlogPageProps
 ) {
   try {
-    // Fixed: await searchParams properly
-    const tag = searchParams.tag;
+    // Fixed: await searchParams properly in Next.js 15
+    const resolvedSearchParams = await searchParams;
+    const tag = resolvedSearchParams.tag;
     const allPosts = getAllPosts();
 
     // Filter posts by tag if provided

@@ -81,7 +81,7 @@ export const featuredProjects: Project[] = [
   {
     name: 'Next.js Portfolio Template',
     description: 'A customizable, SEO-friendly portfolio template built with Next.js, Tailwind CSS, and TypeScript. Features blog support, project showcase, and contact form.',
-    url: 'https://github.com/username/nextjs-portfolio', // CUSTOMIZE: Update with your GitHub username
+    url: 'https://github.com/mirkotrotta/nextjs-portfolio',
     stars: 87,
     updated: '2023-09-15T12:00:00Z',
     language: 'TypeScript',
@@ -90,7 +90,7 @@ export const featuredProjects: Project[] = [
   {
     name: 'FastAPI Backend Starter',
     description: 'Production-ready FastAPI starter template with JWT authentication, SQLAlchemy ORM, Alembic migrations, and comprehensive test suite.',
-    url: 'https://github.com/username/fastapi-starter', // CUSTOMIZE: Update with your GitHub username
+    url: 'https://github.com/mirkotrotta/fastapi-starter',
     stars: 124,
     updated: '2023-10-22T15:30:00Z',
     language: 'Python',
@@ -99,7 +99,7 @@ export const featuredProjects: Project[] = [
   {
     name: 'React Native Task Tracker',
     description: 'Cross-platform mobile app for task management with offline support, push notifications, and cloud sync functionality.',
-    url: 'https://github.com/username/rn-task-tracker', // CUSTOMIZE: Update with your GitHub username
+    url: 'https://github.com/mirkotrotta/rn-task-tracker',
     stars: 68,
     updated: '2023-08-05T09:15:00Z',
     language: 'JavaScript',

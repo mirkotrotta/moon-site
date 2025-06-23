@@ -4,28 +4,60 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import BlogCardSimple from "@/components/blog/BlogCardSimple";
 import GlobalContainer from "@/components/ui/GlobalContainer";
-import { fetchAllPosts, PostData } from "./actions";
+
+// Demo blog posts for showcase
+const DEMO_POSTS = [
+  {
+    slug: 'getting-started-with-nextjs',
+    frontmatter: {
+      title: 'Getting Started with Next.js 15',
+      date: '2024-01-15',
+      summary: 'Learn the basics of Next.js 15 and how to build modern web applications.',
+      tags: ['nextjs', 'react', 'javascript'],
+      coverImage: '/hero-background.jpg'
+    }
+  },
+  {
+    slug: 'building-apis-with-fastapi',
+    frontmatter: {
+      title: 'Building Modern APIs with FastAPI',
+      date: '2024-01-10',
+      summary: 'Discover how to create powerful and efficient APIs using Python and FastAPI.',
+      tags: ['python', 'api', 'fastapi'],
+      coverImage: '/hero-background.jpg'
+    }
+  },
+  {
+    slug: 'responsive-design-principles',
+    frontmatter: {
+      title: 'Responsive Design Principles',
+      date: '2024-01-05',
+      summary: 'Master the art of creating websites that work beautifully on all devices.',
+      tags: ['css', 'design', 'responsive'],
+      coverImage: '/hero-background.jpg'
+    }
+  }
+];
+
+export interface PostData {
+  slug: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    summary?: string;
+    tags?: string[];
+    coverImage?: string;
+  };
+}
 
 export default function ClientBlogSection() {
   const [posts, setPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch blog posts
-    const fetchPosts = async () => {
-      try {
-        const allPosts = await fetchAllPosts();
-        // Get the 6 most recent posts
-        const recentPosts = allPosts.slice(0, 6);
-        setPosts(recentPosts);
-      } catch (error) {
-        console.error("Error fetching blog posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
+    // Use demo posts for showcase
+    setPosts(DEMO_POSTS);
+    setLoading(false);
   }, []);
 
   return (

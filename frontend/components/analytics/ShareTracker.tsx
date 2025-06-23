@@ -14,7 +14,7 @@ type ShareTrackerProps = {
  * <ShareTracker 
  *   onShare={(platform) => {
  *     // Custom tracking code here
- *     console.log(`Shared on ${platform}`);
+ *     if (process.env.NODE_ENV === 'development') console.log(`Shared on ${platform}`);
  *   }}
  * />
  * ```

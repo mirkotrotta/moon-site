@@ -79,10 +79,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AnalyticsProvider
-          googleAnalyticsId="G-XXXXXXXXXX"
-          fathomSiteId="XXXXXXXXXX"
-          plausibleDomain="yourdomain.com"
-          umamiWebsiteId="XXXXXXXXXX"
+          googleAnalyticsId="G-YOUR_GA_ID"
+fathomSiteId="YOUR_FATHOM_ID"
+plausibleDomain="yourdomain.com"
+umamiWebsiteId="YOUR_UMAMI_ID"
         >
           {children}
         </AnalyticsProvider>
