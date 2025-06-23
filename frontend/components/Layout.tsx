@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
-import { Sun, Moon, Menu, Close } from "@carbon/icons-react";
+import { Sun, Moon, Menu, Close, LogoGithub } from "@carbon/icons-react";
 import SocialLinks from "@/components/SocialLinks";
 import GlobalContainer from "@/components/ui/GlobalContainer";
+import { usePathname } from "next/navigation";
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,17 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [darkMode, setDarkMode] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Navigation items with proper structure
+  const navigationItems = [
+    { name: 'About', href: '/about' },
+    { name: 'Resume', href: '/resume' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Design System', href: '/design-system', special: true },
+    { name: 'Contact', href: '/contact' },
+  ];
 
   // Function to update header height CSS variable
   const updateHeaderHeight = () => {
@@ -56,49 +68,132 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="font-sans text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 min-h-screen flex flex-col">
-      <header className="sticky-header border-b border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <header className="sticky-header border-b border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm">
         <GlobalContainer>
-          <div className="flex justify-between items-center h-14">
-            <div className="flex items-center space-x-6">
-              <Link href="/">
-                <span className="font-bold text-lg tracking-tight">Moon Site</span>
+          <div className="flex justify-between items-center h-16">
+            {/* Logo Section */}
+            <div className="flex items-center space-x-8">
+              <Link href="/" className="group">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm group-hover:shadow-lg transition-shadow">
+                    🌙
+                  </div>
+                  <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                    Moon Site
+                  </span>
+                </div>
               </Link>
-              <nav className="hidden md:flex space-x-4 text-sm">
-                <Link href="/about" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">About</Link>
-                <Link href="/resume" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Resume</Link>
-                <Link href="/projects" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Projects</Link>
-                <Link href="/blog" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Blog</Link>
-                <Link href="/design-system" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center text-blue-600 dark:text-blue-400">Design System</Link>
-                <Link href="/contact" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Contact</Link>
+              
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex space-x-1">
+                {navigationItems.map((item) => {
+                  const isActive = pathname === item.href;
+                  const isSpecial = item.special;
+                  
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`
+                        relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200
+                        ${isActive 
+                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                          : isSpecial 
+                            ? 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
+                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }
+                      `}
+                    >
+                      {item.name}
+                      {isSpecial && (
+                        <span className="absolute -top-1 -right-1 w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+                      )}
+                    </Link>
+                  );
+                })}
               </nav>
             </div>
-            <div className="flex items-center gap-2">
+
+            {/* Right Section */}
+            <div className="flex items-center space-x-3">
+              {/* GitHub Link */}
+              <a
+                href="https://github.com/mirkotrotta/moon-site"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                <LogoGithub size={16} />
+                <span>Star</span>
+              </a>
+
+              {/* Theme Toggle */}
               <button
                 onClick={toggleDarkMode}
-                className="border border-gray-400 dark:border-gray-600 p-2 w-8 h-8 text-xs hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center"
+                className="p-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 aria-label="Toggle theme"
               >
-                {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+                {darkMode ? <Sun size={18} /> : <Moon size={18} />}
               </button>
+
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileOpen((prev) => !prev)}
-                className="md:hidden border border-gray-400 dark:border-gray-600 p-2 w-8 h-8 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center"
+                className="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                 aria-label="Toggle mobile menu"
               >
-                {mobileOpen ? <Close size={16} /> : <Menu size={16} />}
+                {mobileOpen ? <Close size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
         </GlobalContainer>
+        {/* Mobile Menu */}
         {mobileOpen && (
-          <GlobalContainer className="md:hidden border-t border-gray-200 dark:border-gray-700 py-3 space-y-2 bg-white dark:bg-gray-900">
-            <Link href="/about" className="block hover:underline">About</Link>
-            <Link href="/resume" className="block hover:underline">Resume</Link>
-            <Link href="/projects" className="block hover:underline">Projects</Link>
-            <Link href="/blog" className="block hover:underline">Blog</Link>
-            <Link href="/design-system" className="block hover:underline text-blue-600 dark:text-blue-400">Design System</Link>
-            <Link href="/contact" className="block hover:underline">Contact</Link>
-          </GlobalContainer>
+          <div className="lg:hidden border-t border-gray-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+            <GlobalContainer className="py-4">
+              <nav className="space-y-1">
+                {navigationItems.map((item) => {
+                  const isActive = pathname === item.href;
+                  const isSpecial = item.special;
+                  
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`
+                        flex items-center px-4 py-3 text-base font-medium rounded-lg transition-all duration-200
+                        ${isActive 
+                          ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20' 
+                          : isSpecial 
+                            ? 'text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/20'
+                            : 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                        }
+                      `}
+                    >
+                      <span className="flex-1">{item.name}</span>
+                      {isSpecial && (
+                        <span className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </nav>
+              
+              {/* Mobile GitHub Link */}
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <a
+                  href="https://github.com/mirkotrotta/moon-site"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                >
+                  <LogoGithub size={20} />
+                  <span>Star on GitHub</span>
+                </a>
+              </div>
+            </GlobalContainer>
+          </div>
         )}
       </header>
 
