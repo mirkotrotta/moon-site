@@ -3,6 +3,9 @@
 import Button from '@/components/ui/Button';
 import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/Card';
 import Tag from '@/components/ui/Tag';
+import Layout from '@/components/Layout';
+import Link from 'next/link';
+import { LogoGithub, Launch } from '@carbon/icons-react';
 import { useState } from 'react';
 
 export default function DesignSystemPage() {
@@ -21,17 +24,45 @@ export default function DesignSystemPage() {
   const typographyTokens = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl'];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <Layout>
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Design System
+            🎨 Design System
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             A comprehensive collection of reusable components, design tokens, and patterns 
-            built with Tailwind CSS for consistent user experiences on Moon Site.
+            built with Tailwind CSS for consistent user experiences. Perfect for your next project!
           </p>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-4 justify-center mb-8">
+            <a
+              href="https://github.com/mirkotrotta/moon-site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <LogoGithub size={20} />
+              View on GitHub
+            </a>
+            <a
+              href="https://github.com/mirkotrotta/moon-site/generate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              <Launch size={20} />
+              Use This Template
+            </a>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              ← Back to Home
+            </Link>
+          </div>
         </div>
 
         {/* Navigation */}
@@ -305,7 +336,34 @@ export default function DesignSystemPage() {
             </Card>
           </div>
         </section>
+
+        {/* Call to Action */}
+        <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Ready to Build Something Amazing?
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            Use this design system as the foundation for your next project. All components are 
+            production-ready and fully customizable.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="https://github.com/mirkotrotta/moon-site/fork"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Fork Repository
+            </a>
+            <a
+              href="https://github.com/mirkotrotta/moon-site/archive/refs/heads/main.zip"
+              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Download ZIP
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 } 

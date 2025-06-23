@@ -68,6 +68,7 @@ export default function Layout({ children }: LayoutProps) {
                 <Link href="/resume" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Resume</Link>
                 <Link href="/projects" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Projects</Link>
                 <Link href="/blog" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Blog</Link>
+                <Link href="/design-system" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center text-blue-600 dark:text-blue-400">Design System</Link>
                 <Link href="/contact" className="hover:underline hover:bg-gray-200 w-full h-full flex items-center justify-center">Contact</Link>
               </nav>
             </div>
@@ -95,6 +96,7 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/resume" className="block hover:underline">Resume</Link>
             <Link href="/projects" className="block hover:underline">Projects</Link>
             <Link href="/blog" className="block hover:underline">Blog</Link>
+            <Link href="/design-system" className="block hover:underline text-blue-600 dark:text-blue-400">Design System</Link>
             <Link href="/contact" className="block hover:underline">Contact</Link>
           </GlobalContainer>
         )}
@@ -108,10 +110,36 @@ export default function Layout({ children }: LayoutProps) {
 
       <footer className="mt-auto border-t border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-xs py-8 text-gray-600 dark:text-gray-400">
         <GlobalContainer className="text-center">
-          <p className="font-semibold">Moon Site – Professional and Blog Template</p>
-          <p className="mt-1">Remote | Open Source Contributor</p>
+          <p className="font-semibold">Moon Site – Professional Portfolio Template</p>
+          <p className="mt-1">Open Source • Production Ready • Fully Customizable</p>
+          <div className="flex justify-center gap-6 mt-3">
+            <a
+              href="https://github.com/mirkotrotta/moon-site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              ⭐ Star on GitHub
+            </a>
+            <a
+              href="https://github.com/mirkotrotta/moon-site/generate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-600 dark:text-green-400 hover:underline"
+            >
+              🚀 Use This Template
+            </a>
+            <a
+              href="https://github.com/mirkotrotta/moon-site/fork"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-600 dark:text-purple-400 hover:underline"
+            >
+              🍴 Fork Repository
+            </a>
+          </div>
           <SocialLinks className="mt-3 justify-center" />
-          <p className="mt-4 text-gray-400">© {new Date().getFullYear()} Moon Site. Built with Next.js & FastAPI.</p>
+          <p className="mt-4 text-gray-400">© {new Date().getFullYear()} Moon Site Template. Built with Next.js & FastAPI.</p>
         </GlobalContainer>
       </footer>
     </div>

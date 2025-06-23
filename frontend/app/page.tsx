@@ -7,19 +7,54 @@ import { skillsData, featuredProjects } from "@/lib/data";
 import Layout from "@/components/Layout";
 import ClientBlogSection from "./ClientBlogSection";
 import HeroWithSidebar from "@/components/ui/HeroWithSidebar";
+import { LogoGithub, Launch } from '@carbon/icons-react';
 
 export default function Home() {
   return (
     <Layout>
-      {/* Hero Section - CUSTOMIZE: Update with your own title, description and CTAs */}
+      {/* Hero Section - Template Showcase */}
       <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white">
-              <HeroWithSidebar
-          title="Moon Site: Your Website Title"
-          description="CUSTOMIZE: Add your website's main description here. This is the first thing visitors will see when they arrive at your site."
-          primaryCta={{ text: "Read the announcement", href: "/blog/first-post" }}
-          secondaryCta={{ text: "Explore possibilities", href: "/blog" }}
-          imageSrc="/images/moon-place-holder-background-1.jpg" // CUSTOMIZE: Replace with your own hero image
-        />
+        <div className="text-center max-w-4xl mx-auto px-4">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+            🚀 Open Source Template • Live Demo
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Moon Site Template
+          </h1>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            A modern, production-ready Next.js portfolio template with FastAPI backend. 
+            Complete with blog, projects showcase, design system, and professional components.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center mb-8">
+            <a
+              href="https://github.com/mirkotrotta/moon-site/generate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl"
+            >
+              <Launch size={20} />
+              Use This Template
+            </a>
+            <a
+              href="https://github.com/mirkotrotta/moon-site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gray-900/50 backdrop-blur-sm hover:bg-gray-900/70 text-white border border-white/20 px-8 py-3 rounded-lg font-medium transition-colors"
+            >
+              <LogoGithub size={20} />
+              View on GitHub
+            </a>
+            <Link
+              href="/design-system"
+              className="bg-purple-600/50 backdrop-blur-sm hover:bg-purple-600/70 text-white border border-white/20 px-8 py-3 rounded-lg font-medium transition-colors"
+            >
+              🎨 Design System
+            </Link>
+          </div>
+          <div className="text-sm text-white/80">
+            ⭐ Star on GitHub • 🍴 Fork & Customize • 🚀 Deploy Instantly
+          </div>
+        </div>
       </section>
 
       {/* About/Introduction Section - CUSTOMIZE: Update with your personal information */}
